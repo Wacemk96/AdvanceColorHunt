@@ -9,9 +9,7 @@ const SinglePalette = () => {
   const {isStoredPalettes} = usePaletteContext();
   const {id} = useParams();
   const [palette, setPalette] = useState(null);
-  const a = b;
   useEffect(() => {
-    console.log(hello);
     const fetchPalette = async () => {
       try {
         const storedPalettes = JSON.parse(localStorage.getItem('palettes')) || [];
@@ -22,7 +20,7 @@ const SinglePalette = () => {
       }
     };
     fetchPalette();
-  }, [a]);
+  }, [id]);
   if (!palette) {
     return (
       <div className="items-center text-center dark:bg-gray-900">
@@ -36,13 +34,12 @@ const SinglePalette = () => {
 
   return (
     <>
-      <h1>{JSON.stringify(palette)}</h1>
       <HeroSection
         title={'Live Preview'}
         description={''}
       />
       <div className="flex flex-col lg:flex-row border-solid border-2 gap-4 ">
-        <div className="content h-screen lg:w-4/5">
+        <div className="content min-h-screen lg:w-4/5">
           <ContentTemplate
             ColorData={palette}
             id={id}

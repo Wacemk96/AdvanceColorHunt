@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {FaGithub, FaTwitter, FaLinkedin} from 'react-icons/fa';
 const ContentTemplate = ({ColorData, id}) => {
-  const {colors} = ColorData;
   return (
     <div className={`content mx-6 transition-all duration-1000`}>
       <header className={`flex justify-between items-center py-8 text-xl font-normal`}>
@@ -42,38 +41,40 @@ const ContentTemplate = ({ColorData, id}) => {
           </button>
         </div>
       </header>
-      <section className="hero flex gap-5 my-20">
-        <div className={`img w-1/3 flex justify-end`}>
+      <section className="hero flex flex-col justify-center items-center gap-5 my-20 lg:flex-row lg:justify-center lg:items-center">
+        <div className="img w-full lg:w-1/3 flex justify-center items-center">
           <img
             src="https://www.waseemk.com/wp-content/uploads/2023/03/waseem.jpeg"
             alt="waseem khan"
             className="w-72"
           />
         </div>
-        <div className="content flex flex-col justify-between w-2/3">
-          <div className="info flex flex-col gap-6">
-            <h2 className={`text-3xl font-bold leading-normal text-indigo-600`}>
+        <div className="content flex flex-col justify-between w-full lg:w-2/3">
+          <div className="info flex flex-col gap-6 text-center lg:text-left">
+            <h2 className="text-1xl lg:text-3xl font-bold leading-normal text-indigo-600">
               You can count on me to work tirelessly until your project is completed to your
               satisfaction.
             </h2>
-            <h1 className={`text-5xl text-black font-extrabold`}>Hi, I'm Waseem Khan 👋</h1>
-            <p className={`text-2xl`}>
+            <h1 className="text-4xl lg:text-5xl text-black font-extrabold">
+              Hi, I'm Waseem Khan 👋
+            </h1>
+            <p className="text-1xl lg:text-2xl">
               I'm a Passionate Front-end Developer & WordPress Enthusiast
             </p>
           </div>
-          <div className="action flex gap-5">
+          <div className="action flex my-5 gap-5 justify-center items-center lg:justify-normal lg:items-start">
             <button
-              className={`py-2 px-6 border-solid border-black border rounded-sm tracking-widest hover:bg-indigo-100 hover:border-none hover:scale-110 transition-all duration-500`}
+              className={`py-2 px-4 text-sm border-solid border-black border rounded-sm hover:bg-indigo-100 hover:border-none hover:scale-110 transition-all duration-500`}
             >
               Contact me!
             </button>
             <button
-              className={`py-2 px-6 border-solid border-black border rounded-sm tracking-widest hover:bg-indigo-100 hover:border-none hover:scale-110 transition-all duration-500`}
+              className={`py-2 px-4 text-sm border-solid border-black border rounded-sm hover:bg-indigo-100 hover:border-none hover:scale-110 transition-all duration-500`}
             >
               Download Resume
             </button>
           </div>
-          <div className="social flex text-3xl gap-6">
+          <div className="social flex text-3xl gap-6 justify-center items-center lg:justify-normal lg:items-start">
             <FaLinkedin
               className={`text-indigo-500 hover:text-indigo-600 hover:scale-110 transition-all duration-500`}
             />
