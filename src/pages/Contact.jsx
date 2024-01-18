@@ -1,13 +1,14 @@
 import React from 'react';
 import HeroSection from '../components/HeroSection';
-
 const Contact = () => {
   return (
     <React.Fragment>
-      <HeroSection
-        title={'Contact us'}
-        description={'If you have any question please contact us'}
-      />
+      <div className="min-h-screen dark:bg-gray-900">
+        <HeroSection
+          title={'Contact us'}
+          description={'If you have any question please contact us'}
+        />
+      </div>
     </React.Fragment>
   );
 };

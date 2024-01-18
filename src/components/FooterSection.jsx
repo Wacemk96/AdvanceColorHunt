@@ -17,10 +17,10 @@ function FooterSection() {
         <div className="w-full text-center">
           <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
             <FooterBrand
-              href="/"
-              src="https://coolors.co/assets/img/logo.svg"
+              href=""
+              src="/logo.png"
               alt="coolors"
-              className="w-28"
+              className="mr-3 h-4 sm:h-5"
             />
             <FooterLinkGroup>
               <FooterLink href="#">About</FooterLink>

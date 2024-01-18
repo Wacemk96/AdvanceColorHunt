@@ -19,7 +19,7 @@ function Header() {
       >
         <NavbarBrand href="/">
           <img
-            src="https://coolors.co/assets/img/logo.svg"
+            src="/logo.png"
             className="mr-3 h-4 sm:h-5"
             alt="Flowbite React Logo"
           />

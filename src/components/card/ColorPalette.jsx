@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ColorCard from './ColorCard';
 import CardFooter from './CardFooter';
 import {Button, Spinner} from 'flowbite-react';
@@ -6,11 +6,50 @@ import HeroSection from '../HeroSection';
 import SearchInput from '../SearchInput';
 import {Link} from 'react-router-dom';
 import {BsSend} from 'react-icons/bs';
+import paletteData from '../../utils/dummyData';
 
 const ColorPalette = () => {
   const isstoredPalettes = JSON.parse(localStorage.getItem('palettes')) || [];
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredPalettes, setFilteredPalettes] = useState(isstoredPalettes);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const addDummyData = async () => {
+    try {
+      let existingData = localStorage.getItem('palettes');
+      existingData = existingData ? JSON.parse(existingData) : [];
+      let updatedData = [...existingData, ...paletteData];
+      localStorage.setItem('palettes', JSON.stringify(updatedData));
+
+      setFilteredPalettes(updatedData);
+    } catch (error) {
+      console.error('Error adding dummy data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const initializeData = async () => {
+      try {
+        let existingData = localStorage.getItem('palettes');
+        existingData = existingData ? JSON.parse(existingData) : [];
+
+        if (existingData.length === 0) {
+          // If no data exists, add dummy data
+          await addDummyData();
+        } else {
+          setFilteredPalettes(existingData);
+        }
+      } catch (error) {
+        console.error('Error initializing data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    initializeData();
+  }, []);
 
   const handleSearchChange = (event) => {
     const query = event.target.value.toLowerCase();
@@ -52,19 +91,19 @@ const ColorPalette = () => {
       />
       <HeroSection />
       <div className="dark:bg-gray-900 min-h-screen">
-        {isstoredPalettes.length === 0 ? (
+        {isLoading ? (
           <div className="flex flex-col justify-center items-center text-center -mt-24">
             <Spinner
               aria-label="Extra large spinner example"
               size="xl"
             />
-            <h1 className="mt-10 text-xl">Please create your own Palette</h1>
+            <h1 className="mt-10 text-xl dark:text-gray-200">Please create your own Palette</h1>
             <Link to="/create">
               <Button
                 color="gray"
                 className="mt-10"
               >
-                <BsSend className="mr-10 h-4 w-4" />
+                <BsSend className="mr-2 h-4 w-4" />
                 Submit Palette
               </Button>
             </Link>
